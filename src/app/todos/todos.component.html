@@ -1,0 +1,6 @@
+<div class="todoList">
+  <div class="todo"  routerLink="/todos/{{todo.id}}" routerLinkActive="active" *ngFor="let todo of todos">
+    <h3>{{todo.title}}</h3>
+    <span class="date"> {{todo.updateDate | date}}</span>
+  </div>
+</div>

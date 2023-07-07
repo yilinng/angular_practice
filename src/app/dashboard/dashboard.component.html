@@ -1,0 +1,9 @@
+<h2>Top Todos</h2>
+<div class="todos-menu">
+  <a *ngFor="let todo of todos"
+      routerLink="/todos/{{todo.id}}">
+      {{todo.title}}
+  </a>
+</div>
+
+<app-todo-search></app-todo-search>

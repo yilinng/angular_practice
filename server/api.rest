@@ -1,0 +1,71 @@
+POST http://localhost:4000/api/login
+Content-Type: application/json
+
+{
+    "email": "test11@test.com",
+    "password": "test11"
+}
+
+###
+POST http://localhost:4000/api/signup
+Content-Type: application/json
+
+{
+   "name": "test11",
+   "email": "test11@test.com",
+   "password": "test11"
+}
+
+
+###
+DELETE http://localhost:4000/api/users/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHVVeGo5M2F0YXRLazBvL2g4VGtnT3UvanFTcy5zcG1lbUl6aWF2V294SHJHQ1BGUHp6THJxIiwiaWF0IjoxNjg4MDk1NjE5LCJleHAiOjE2ODgxMDc2MTl9.cFxgib7uitBlU_WyIa-73RpjvYpd6_Io0Mn7PrCDe9A
+
+
+###
+GET http://localhost:4000/api/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHVVeGo5M2F0YXRLazBvL2g4VGtnT3UvanFTcy5zcG1lbUl6aWF2V294SHJHQ1BGUHp6THJxIiwiaWF0IjoxNjg4MDk1NjE5LCJleHAiOjE2ODgxMDc2MTl9.cFxgib7uitBlU_WyIa-73RpjvYpd6_Io0Mn7PrCDe9A
+
+###
+GET http://localhost:4000/api/users/649adaa22f7aaa10a87e8c31
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHVVeGo5M2F0YXRLazBvL2g4VGtnT3UvanFTcy5zcG1lbUl6aWF2V294SHJHQ1BGUHp6THJxIiwiaWF0IjoxNjg4MDk1NjE5LCJleHAiOjE2ODgxMDc2MTl9.cFxgib7uitBlU_WyIa-73RpjvYpd6_Io0Mn7PrCDe9A
+
+
+
+###
+POST http://localhost:4000/api/todos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHVVeGo5M2F0YXRLazBvL2g4VGtnT3UvanFTcy5zcG1lbUl6aWF2V294SHJHQ1BGUHp6THJxIiwiaWF0IjoxNjg3OTU1Mjc0LCJleHAiOjE2ODc5NjcyNzR9.KxHKZRF0FLH6SMvxE_3V9alOj9z6VjbdM3DIEd5m3Sw
+
+{
+    "title": "test11 title11",
+    "content": "test11 content11"
+}
+
+###
+GET http://localhost:4000/api/todos
+
+
+###
+GET http://localhost:4000/api/todos/649c2b963af96a2180a2d41d
+
+
+###
+PATCH  http://localhost:4000/api/todos/649b9ad85ff0821c8cfdcec7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHVVeGo5M2F0YXRLazBvL2g4VGtnT3UvanFTcy5zcG1lbUl6aWF2V294SHJHQ1BGUHp6THJxIiwiaWF0IjoxNjg3OTU1Mjc0LCJleHAiOjE2ODc5NjcyNzR9.KxHKZRF0FLH6SMvxE_3V9alOj9z6VjbdM3DIEd5m3Sw
+
+{
+    "title": "test12 title update1",
+    "content": "test12 content update123"
+}
+
+###
+DELETE http://localhost:4000/api/todos/649c298f96cf251ae8756ce2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHVVeGo5M2F0YXRLazBvL2g4VGtnT3UvanFTcy5zcG1lbUl6aWF2V294SHJHQ1BGUHp6THJxIiwiaWF0IjoxNjg3OTU1Mjc0LCJleHAiOjE2ODc5NjcyNzR9.KxHKZRF0FLH6SMvxE_3V9alOj9z6VjbdM3DIEd5m3Sw
+
+###

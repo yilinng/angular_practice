@@ -1,0 +1,19 @@
+.todoList {
+  width: 1000px;
+  margin: 20px auto;
+}
+
+.todoList .todo {
+  border: 1px solid #eee;
+  margin: 10px auto;
+  width: 70%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.todoList .todo:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+

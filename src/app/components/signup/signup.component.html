@@ -1,0 +1,32 @@
+<div class="auth-wrapper" *ngIf="!this.authService.isLoggedIn">
+  <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
+    <h3 class="h3 mb-3 font-weight-normal text-center">Please sign up</h3>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="Enter name" required minlength="6" />
+      <div class="alert" [hidden]="signupForm.value.name || signupForm.value?.name?.pristine">Name is required!!</div>
+      <div class="alert" [hidden]="signupForm.value.name.length > 5">at least 6 characters</div>
+     
+    </div>
+
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required />
+      <div class="alert" [hidden]="signupForm.value.email || signupForm.value?.email?.pristine">Email is required!!
+      </div>
+      <div class="alert" [hidden]="checkEmail()">email is not
+        unique</div>
+        <div class="alert" [hidden]="matchEmail()">email address is invalid</div>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Password" required  minlength="6"/>
+      <div class="alert" [hidden]="signupForm.value.password || signupForm.value?.password?.pristine">Password is
+        required!!</div>
+      <div class="alert" [hidden]="signupForm.value.password.length > 5">at least 6 characters</div>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-primary" [disabled]="checkValue()">Sign up</button>
+  </form>
+</div>

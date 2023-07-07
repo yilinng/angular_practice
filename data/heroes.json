@@ -1,0 +1,22 @@
+{
+  "heroes": [
+    {
+      "id": "c316d518-b455-4eb6-b449-28e96f008e28",
+      "name": "Dr. IQ",
+      "power": "Super Flexible",
+      "alterEgo": "Chuck Overstreett"
+    },
+    {
+      "id": "2ad64387-255f-4001-9705-28aec35ec3cc",
+      "name": "Dr. Wee",
+      "power": "Super Hot",
+      "alterEgo": "Chuck Overstreet"
+    },
+    {
+      "id": "6ade4186-9b43-4ed5-b346-5ce092e2d554",
+      "name": "Dr. Mei",
+      "power": "Super Flexible",
+      "alterEgo": "Chuck Overstreet"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+.user_detail {
+  display: flex;
+  margin: 20px auto;
+  width: 1000px;
+  flex-direction: row;
+  background-color: #eee;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.column {
+  padding: 10px;
+}
+
+.user_Content {
+  flex: 1;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+.user_Form form {
+  padding: 20px;
+  margin: auto;
+}
+
+h3 {
+  text-align: center;
+}
+
+.form-group {
+  margin: 20px;
+}
+
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: .5rem;
+  margin: 1rem 0;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: #336699 auto 1px;
+}
+
+li {
+  list-style-type: none;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+}
+
+.alert {
+  color: red;
+  font-weight: 700;
+}
+
+button {
+  margin: 20px;
+}
+
+.detail {
+  background-color: white;
+}
+
+.detail div {
+  border-bottom:  1px;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+
+.todoList {
+  flex: 1;
+  background-color: #eee;
+  list-style-type: none;
+}
+
+.todoList .header  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.todoList .header .title {
+  text-align: center;
+  font-weight: 900;
+}
+
+.todoList .header button {
+  background-color: gray;
+  font-weight: 700;
+  color: white;
+}
+
+.todoList .header button:hover {
+  background-color: black;
+  font-weight: 700;
+  color: #eee;
+}
+
+
+.todoList ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todoList li {
+  padding: 10px;
+  border: 2px solid white;
+  margin: 10px auto;
+}
+
+.badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  min-width: 16px;
+  text-align: right;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+.badge:active, .badge:hover {
+  background-color: #525252;
+}
+
+@media only screen and (max-width: 600px) {
+  .user_detail {
+    width: auto;
+    flex-direction: column;
+  }
+}

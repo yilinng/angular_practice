@@ -1,0 +1,53 @@
+.auth-wrapper {
+  width: 1000px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.auth-wrapper form {
+  padding: 20px;
+  margin: auto;
+}
+
+h3 {
+  text-align: center;
+}
+
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: .5rem;
+  margin: 1rem 0;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: #336699 auto 1px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.alert {
+  color: red;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  .auth-wrapper {
+    width: auto;
+    flex-direction: column;
+
+  }
+}
