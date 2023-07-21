@@ -34,19 +34,19 @@ export class UserProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.getUser();
-    this.getTodo();
-
+    this.getTodos();
   }
 
   getUser(): void {
     let id = localStorage.getItem('user_id');
 
-    this.authService
-      .getUserProfile(id)
+    console.log('getUser id', id);
+
+    this.authService.getUserProfile(id)
       .subscribe((res) => this.currentUser = res);
   }
 
-  getTodo() {
+  getTodos() {
     return this.todoService.getTodos().subscribe((data) => {
 
       const filteredTodos = data.filter(todo => this.currentUser && this.currentUser.todos?.includes(todo.id))
@@ -54,8 +54,6 @@ export class UserProfileComponent implements OnInit {
       this.todos = filteredTodos
     })
   }
-
-
 
   submitted = false;
 

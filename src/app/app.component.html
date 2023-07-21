@@ -1,17 +1,3 @@
-<div class="header">
-  <h5 class="title" routerLink="/">Angular Mean Auth</h5>
-  <nav class="navbar">
-    <a class="todoList" routerLink="/todos" routerLinkActive="active">todoList</a>
-    <a *ngIf="this.authService.isLoggedIn" class="user-profile"  routerLinkActive="active"
-      routerLink="/user-profile">User Profile</a>
-    <a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/log-in">Sign
-      in</a>
-  </nav>
-  <nav class="navbar">
-  <a *ngIf="!this.authService.isLoggedIn" class="sign-up" routerLinkActive="active"
-    routerLinkActive="active" routerLink="/sign-up">Sign up</a>
-  <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
-</nav>
-</div>
+<app-banner></app-banner>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

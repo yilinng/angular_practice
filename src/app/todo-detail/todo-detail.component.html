@@ -15,16 +15,16 @@
     ></textarea>
   </div>
 
-  <button type="button" (click)="goBack()">go back</button>
-  <button type="button" (click)="save()">save</button>
+  <button type="button" class="backBtn" (click)="goBack()">go back</button>
+  <button type="button" class="saveBtn" (click)="save()">save</button>
 </div>
 
 <div *ngIf="todo && (user && todo.user !== user.id || !user)" class="todo_detail">
-  <h2>title: {{ todo.title | uppercase }} Details</h2>
-  <p>content: {{ todo.content }}</p>
+  <h2 class="title">title: {{ todo.title }} Details</h2>
+  <p class="content">content: {{ todo.content }}</p>
 
   <div class="date">update date: {{ todo.updateDate | date : "MM/dd/yy" }}</div>
 
 
-  <button type="button" (click)="goBack()">go back</button>
+  <button type="button" class="backBtn" (click)="goBack()">go back</button>
 </div>

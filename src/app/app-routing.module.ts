@@ -8,9 +8,10 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodosComponent } from './todos/todos.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { AuthGuard } from "./shared/auth.guard";
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
@@ -19,7 +20,15 @@ const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'log-in', component: LoginComponent },
   { path: 'sign-up', component: SignupComponent },
-  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] }
+  {
+    path: 'user-profile', component: UserProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  //Wild Card Route for 404 request
+  {
+    path: '**', pathMatch: 'full',
+    component: PagenotfoundComponent
+  },
 ];
 
 @NgModule({

@@ -14,8 +14,8 @@
         </div>
 
 
-        <button type="submit" class="btn btn-success" [disabled]="checkValue()">Submit</button>
-        <button type="button" class="btn btn-default" (click)="newTodo()">New Todo</button>
+        <button type="submit" class="submitBtn" [disabled]="checkValue()">Submit</button>
+        <button type="button" class="newBtn" (click)="newTodo()">New Todo</button>
       </form>
 
     </div>
@@ -42,7 +42,7 @@
         <a routerLink="/todos/{{todo.id}}">
           <span class="badge">{{todo.title}}</span>
         </a>
-        <button type="button" class="delete" title="delete hero" (click)="delete(todo)">delete todo X</button>
+        <button type="button" class="deleteBtn" title="delete hero" (click)="delete(todo)">delete todo X</button>
 
         <p class="todo">content: {{todo.content}}</p>
       </li>

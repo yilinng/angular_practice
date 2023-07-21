@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserEntry , Email} from '../types/types';
+import { UserEntry, Email, UserInformation } from '../types/types';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {
@@ -19,52 +19,45 @@ export class AuthService {
   currentUser = {};
   constructor(private http: HttpClient, public router: Router, private messageService: MessageService) { }
   // Sign-up
-  signUp(user:  UserEntry): Observable<any> {
+  signUp(user: UserEntry): Observable<any> {
     let api = `${this.endpoint}/signup`;
-    return this.http.post(api, user).pipe(catchError(this.handleError<UserEntry>('signup')));
+    return this.http.post(api, user).pipe(
+      tap((res: UserInformation) => this.log(`added user ${res}`)),
+      catchError(this.handleError<UserEntry>('signup')));
   }
   // Sign-in
-  logIn(user:  UserEntry) {
+  logIn(user: UserEntry) {
+    let api = `${this.endpoint}/login`;
     return this.http
-      .post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.addTokenEntry.accessToken);
-        localStorage.setItem('user_id', res.user.id);
-
-        console.log('login res...', res);
-
-        this.getUserProfile(res.user.id).subscribe((in_res) => {
-          this.currentUser = in_res;
-          this.router.navigate(['user-profile']);
-          console.log('this.currentUser', this.currentUser)
-
-        });
-      });
+      .post<any>(api, user).pipe(
+        tap((res: any) => {
+          localStorage.setItem('access_token', res.addTokenEntry.accessToken);
+          localStorage.setItem('user_id', res.user.id);
+          this.log(`login user ${res}`)
+        }),
+        catchError(this.handleError<UserEntry>('login')));
   }
   getToken() {
     return localStorage.getItem('access_token');
   }
+
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return authToken !== null ? true : false;
+    //let authToken = localStorage.getItem('access_token');
+    return this.getToken() !== null ? true : false;
   }
+
   doLogout() {
-    return this.http.delete(`${this.endpoint}/users/logout`, { headers: this.headers }).subscribe((res) => {
-      console.log('logout res', res)
-
-      let removeToken = localStorage.removeItem('access_token');
-      let removeToken_user = localStorage.removeItem('user_id');
-
-      console.log('removeToken', removeToken)
-      if (removeToken == null && removeToken_user == null) {
-        this.router.navigate(['log-in']);
-      }
-    });
-
+    return this.http.delete(`${this.endpoint}/users/logout`, { headers: this.headers }).pipe(
+      tap((res: any) => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user_id');
+        this.log(`logout user ${res}`)
+      }),
+      catchError(this.handleError<UserEntry>('logout')));
   }
   // User profile
   getUserProfile(id: any): Observable<any> {
-   
+
     let pass_Id = id || localStorage.getItem('user_id');
 
     let api = `${this.endpoint}/users/${pass_Id}`;
@@ -74,15 +67,15 @@ export class AuthService {
         this.currentUser = res;
         return res || {};
       }),
-      catchError(this.handleError< UserEntry>('getUserProfile'))
+      catchError(this.handleError<UserEntry>('getUserProfile'))
     );
   }
 
   //get email
   getEmail() {
     const url = `${this.endpoint}/users/email`;
-    const emails = this.http.get<Email>(url)
-    this.messageService.add('authService: fetched email');
+    const emails = this.http.get<Email>(url);
+    this.log(`authService: fetched email`)
     return emails
   }
   // Error
@@ -120,8 +113,8 @@ export class AuthService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a authService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`authService: ${message}`);
   }
 }

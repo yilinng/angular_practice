@@ -16,12 +16,12 @@ export class LoginComponent implements OnInit {
     public authService: AuthService,
     public router: Router
   ) {
-    
+
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-    
+
   }
   ngOnInit() {
   }
@@ -35,8 +35,12 @@ export class LoginComponent implements OnInit {
 
 
   loginUser() {
-    this.authService.logIn(this.loginForm.value);
-    this.loginForm.reset()
+    this.authService.logIn(this.loginForm.value).subscribe(res => {
+      this.loginForm.reset();
+      console.log('login success subscribe res', res);
+      this.router.navigate(['user-profile']);
+    })
+   
   }
 
 }

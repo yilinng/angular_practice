@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+//import { CommonModule } from '@angular/common';  
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodosComponent } from './todos/todos.component';
 import { TodoSearchComponent } from './todo-search/todo-search.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,12 @@ import { TodoSearchComponent } from './todo-search/todo-search.component';
     UserProfileComponent,
     TodoDetailComponent,
     TodosComponent,
-    TodoSearchComponent
+    TodoSearchComponent,
+    BannerComponent,
+    PagenotfoundComponent
   ],
   imports: [
+   // CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

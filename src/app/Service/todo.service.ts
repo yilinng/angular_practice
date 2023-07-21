@@ -9,6 +9,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,7 @@ export class TodoService {
     return todos
   }
 
-   /** GET hero by id. Return `undefined` when id not found */
+   /** GET todo by id. Return `undefined` when id not found */
    getTodoNo404<Data>(id: string): Observable<TodoEntry> {
     const url = `${this.endpoint}/?id=${id}`;
     return this.http.get<TodoEntry[]>(url)
@@ -32,24 +33,24 @@ export class TodoService {
         map(todos => todos[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} hero id=${id}`);
+          this.log(`${outcome} todo id=${id}`);
         }),
         catchError(this.handleError<TodoEntry>(`getTodo id=${id}`))
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** GET todo by id. Will 404 if id not found */
   getTodo(id: string): Observable<TodoEntry> {
     const url = `${this.endpoint}/${id}`;
     return this.http.get<TodoEntry>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
+      tap(_ => this.log(`fetched todo id=${id}`)),
       catchError(this.handleError<TodoEntry>(`getTodo id=${id}`))
     );
   }
 
     //////// Save methods //////////
 
-  /** POST: add a new hero to the server */
+  /** POST: add a new todo to the server */
   addTodo(todo: TodoEntry): Observable<TodoEntry> {
     return this.http.post<TodoEntry>(this.endpoint, todo, { headers: this.headers }).pipe(
       tap((newTodo: TodoEntry) => this.log(`added todo w/ id=${newTodo[`id`]}`)),

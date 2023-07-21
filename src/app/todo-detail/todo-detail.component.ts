@@ -50,5 +50,5 @@ export class TodoDetailComponent implements OnInit {
 
   }
 
- 
+
 }
