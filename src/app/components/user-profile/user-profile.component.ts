@@ -40,7 +40,7 @@ export class UserProfileComponent implements OnInit {
   getUser(): void {
     let id = localStorage.getItem('user_id');
 
-    console.log('getUser id', id);
+   // console.log('getUser id', id);
 
     this.authService.getUserProfile(id)
       .subscribe((res) => this.currentUser = res);
@@ -50,7 +50,7 @@ export class UserProfileComponent implements OnInit {
     return this.todoService.getTodos().subscribe((data) => {
 
       const filteredTodos = data.filter(todo => this.currentUser && this.currentUser.todos?.includes(todo.id))
-      console.log('filteredTodos', filteredTodos)
+     // console.log('filteredTodos', filteredTodos)
       this.todos = filteredTodos
     })
   }
@@ -65,7 +65,7 @@ export class UserProfileComponent implements OnInit {
   delete(todo: TodoEntry): void {
     if (window.confirm('Want to delete?')) {
       this.todos = this.todos.filter((h) => h !== todo);
-      console.log('hero delete', todo)
+     // console.log('hero delete', todo)
       this.todoService.deleteTodo(todo).subscribe();
     }
 

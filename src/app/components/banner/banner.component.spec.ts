@@ -12,21 +12,21 @@ import { Location } from '@angular/common';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { AuthService } from 'src/app/shared/auth.service';
 import { of } from 'rxjs';
+import { mockUserDetails } from '../../../mocks/mockUser';
 
 
 describe('BannerComponent which  have an authorization', () => {
   let component: BannerComponent;
   let fixture: ComponentFixture<BannerComponent>
   let router: Router;
-  let mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', ['doLogout']);
+  let mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', ['getUserProfile', 'doLogout']);
   let location: Location;
-  let authService: AuthService;
-
-  //let authServiceSpy: jasmine.Spy<(this: AuthService) => boolean>;
+ // let authService: AuthService;
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
+      declarations: [BannerComponent],
       imports: [HttpClientTestingModule,
         RouterTestingModule.withRoutes([
           { path: 'log-in', component: LoginComponent },
@@ -34,26 +34,24 @@ describe('BannerComponent which  have an authorization', () => {
           { path: 'user-profile', component: UserProfileComponent }
         ])
       ],
-      declarations: [
-        BannerComponent
-      ],
       // provide the mock instead of the real one
-      providers: [{ provide: authService, useValue: mockAuthService }]
+      providers: [{ provide: AuthService, useValue: mockAuthService }]
     });
 
     fixture = TestBed.createComponent(BannerComponent);
     component = fixture.componentInstance;
-    // authService = TestBed.inject(AuthService)
+
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
 
-    spyOn(Storage.prototype, 'getItem').withArgs('access_token').and.returnValue('test');
-    //authServiceSpy = spyOnProperty(authService, 'isLoggedIn', 'get').and.returnValue(true)
+
+    let id = '649adaa22f7aaa10a87e8c31';
+    spyOn(Storage.prototype, 'getItem').withArgs('user_id').and.returnValue(id);
     spyOn(router, 'navigate');
 
+    mockAuthService.getUserProfile.and.returnValue(of(mockUserDetails));
     mockAuthService.doLogout.and.returnValue(of({ message: 'logout success' }))
 
-    
     //https://stackoverflow.com/questions/11485420/how-to-mock-localstorage-in-javascript-unit-tests
     //https://jasmine.github.io/api/edge/Spy.html
     //https://baldur.gitbook.io/angular/angular-test/testing/angular-testing/spyon
@@ -63,6 +61,7 @@ describe('BannerComponent which  have an authorization', () => {
   });
 
   it('should create the app', () => {
+
     expect(component).toBeDefined();
   });
 
@@ -98,7 +97,7 @@ describe('BannerComponent which  have an authorization', () => {
   }));
 
 
-  /*
+  
   it('click logout button navigate to log-in page.', () => {
 
     const logoutBtn = fixture.debugElement.query(By.css('.logoutBtn')).nativeElement;
@@ -107,12 +106,13 @@ describe('BannerComponent which  have an authorization', () => {
 
     fixture.detectChanges();
 
+
     expect(mockAuthService.doLogout).toHaveBeenCalled();
 
     expect(router.navigate).toHaveBeenCalledWith(['log-in']);
 
   });
-  */
+  
 
 });
 

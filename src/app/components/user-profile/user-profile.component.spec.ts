@@ -24,9 +24,9 @@ describe('UserProfileComponent', () => {
   let router: Router;
   let profileDe: DebugElement;
   let profileEl: HTMLElement;
-
   //https://stackoverflow.com/questions/53495617/unit-testing-angular-6-location-go-back
   let location: Location;
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UserProfileComponent],
