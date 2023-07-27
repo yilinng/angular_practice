@@ -10,24 +10,30 @@ import { UserEntry } from 'src/app/types/types';
 })
 export class BannerComponent implements OnInit {
   currentUser: UserEntry | undefined;
-
+  isLoggedIn: boolean = false;
   constructor(public authService: AuthService, public router: Router) { }
 
+
   ngOnInit(): void {
-    this.getUser();
+   this.getUser();
   }
 
   
   getUser(): void {
-    let id = localStorage.getItem('user_id');
+    if (this.authService.isLoggedIn) {
+      this.isLoggedIn = true;
+      let id = localStorage.getItem('user_id');
 
-    this.authService.getUserProfile(id)
-      .subscribe((res) => this.currentUser = res);
+      this.authService.getUserProfile(id)
+        .subscribe((res) => this.currentUser = res);
+    }
   }
 
   logout() {
     this.authService.doLogout().subscribe(res => {
       console.log('logout success subscribe res.', res);
+      this.currentUser = undefined;
+      this.isLoggedIn = false;
       this.router.navigate(['log-in']);
     })
   }

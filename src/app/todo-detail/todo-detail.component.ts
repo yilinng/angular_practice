@@ -16,6 +16,7 @@ export class TodoDetailComponent implements OnInit {
 
   todo: TodoEntry | undefined;
   user: UserEntry | undefined;
+  isLoggedIn: boolean = false;
 
   constructor(private route: ActivatedRoute, private todoService: TodoService, private authService: AuthService, private location: Location) { }
 

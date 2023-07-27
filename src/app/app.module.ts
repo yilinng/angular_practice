@@ -24,48 +24,44 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoSearchComponent } from './todo-search/todo-search.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ServerErrorInterceptor } from './shared/ServerErrorInterceptor';
+import { CustomDirective } from './Directive/custom.directive'
+import { AdDirective } from './Directive/ad.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessagesComponent,
-    DashboardComponent,
-    HeroSearchComponent,
-    LoginComponent,
-    SignupComponent,
-    UserProfileComponent,
-    TodoDetailComponent,
-    TodosComponent,
-    TodoSearchComponent,
-    BannerComponent,
-    PagenotfoundComponent
-  ],
-  imports: [
-   // CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    /*
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
-    */
-  ],
-  providers:  [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeroesComponent,
+        HeroDetailComponent,
+        MessagesComponent,
+        DashboardComponent,
+        HeroSearchComponent,
+        LoginComponent,
+        SignupComponent,
+        UserProfileComponent,
+        TodoDetailComponent,
+        TodosComponent,
+        TodoSearchComponent,
+        BannerComponent,
+        PagenotfoundComponent,
+        CustomDirective,
+        AdDirective,
+    ],
+    //https://medium.com/front-end-weekly/understanding-angular-http-interceptors-67078b2fcc0b
+    //https://dev.to/this-is-angular/angular-error-interceptor-12bg?comments_sort=latest
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        // CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+    ]
 })
 
 export class AppModule {

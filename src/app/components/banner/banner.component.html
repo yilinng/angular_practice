@@ -2,11 +2,11 @@
   <h5 class="title" routerLink="/">Angular Mean Auth</h5>
   <nav class="navbar">
     <a class="todoList" routerLink="/todos" routerLinkActive="active">todoList</a>
-    <a *ngIf="currentUser" class="user-profile" routerLinkActive="active"
+    <a *ngIf="isLoggedIn || this.authService.isLoggedIn" class="user-profile" routerLinkActive="active"
       routerLink="/user-profile">User Profile</a>
-    <button (click)="logout()" *ngIf="currentUser" type="button" class="logoutBtn">Logout</button>
+    <button (click)="logout()" *ngIf="isLoggedIn || this.authService.isLoggedIn " type="button" class="logoutBtn">Logout</button>
   </nav>
-  <nav class="navbar" *ngIf="!currentUser">
+  <nav class="navbar" *ngIf="!isLoggedIn && !this.authService.isLoggedIn">
     <a class="sign-up" routerLinkActive="active" routerLinkActive="active" routerLink="/sign-up">Sign up</a>
     <a class="sign-in" routerLinkActive="active" routerLink="/log-in">Sign in</a>
   </nav>

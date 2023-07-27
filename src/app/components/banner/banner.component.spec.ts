@@ -46,7 +46,9 @@ describe('BannerComponent which  have an authorization', () => {
 
 
     let id = '649adaa22f7aaa10a87e8c31';
-    spyOn(Storage.prototype, 'getItem').withArgs('user_id').and.returnValue(id);
+    //spyOn(Storage.prototype, 'getItem').withArgs('access_token').and.returnValue('test');
+    component.isLoggedIn = true
+    //spyOn(Storage.prototype, 'getItem').withArgs('user_id').and.returnValue(id);
     spyOn(router, 'navigate');
 
     mockAuthService.getUserProfile.and.returnValue(of(mockUserDetails));

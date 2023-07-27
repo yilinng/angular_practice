@@ -20,9 +20,10 @@ export class TodoService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getTodos() {
-    const todos = this.http.get<TodoEntry[]>(this.endpoint)
-    this.messageService.add('TodoService: fetched todos');
-    return todos
+    return this.http.get<TodoEntry[]>(this.endpoint)
+      .pipe(
+        tap(_ => this.log(`fetched todos`)),
+        catchError(this.handleError<TodoEntry[]>(`fetch todos fails`)))
   }
 
    /** GET todo by id. Return `undefined` when id not found */
@@ -113,9 +114,11 @@ export class TodoService {
   
         // TODO: send the error to remote logging infrastructure
         console.error(error); // log to console instead
+
+       // console.log('operation', operation)
   
         // TODO: better job of transforming error for user consumption
-        this.log(`${operation} failed: ${error.message}`);
+        this.log(`${operation}`);
   
         // Let the app keep running by returning an empty result.
         return of(result as T);

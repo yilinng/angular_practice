@@ -1,4 +1,4 @@
-<h2>Top Todos</h2>
+<h2 customDirective="red">Top Todos</h2>
 <div class="todos-menu">
   <a *ngFor="let todo of todos"
       routerLink="/todos/{{todo.id}}">
@@ -7,3 +7,4 @@
 </div>
 
 <app-todo-search></app-todo-search>
+<ng-template adHost></ng-template>

@@ -36,14 +36,13 @@ export class AuthService {
           this.log(`login user ${res}`)
         }),
         catchError(this.handleError<UserEntry>('login')));
-  }
+  };
+
   getToken() {
     return localStorage.getItem('access_token');
   }
 
   get isLoggedIn(): boolean {
-    console.log('get is loggedIn',this.getToken())
-    //let authToken = localStorage.getItem('access_token');
     return this.getToken() !== null ? true : false;
   }
 
@@ -52,6 +51,7 @@ export class AuthService {
       tap((res: any) => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('user_id');
+        this.currentUser = {}
         this.log(`logout user ${res}`)
       }),
       catchError(this.handleError<UserEntry>('logout')));
